@@ -8,7 +8,7 @@ A digital implementation of the classic Battleship game on FPGA, featuring a 4x4
 - [Hardware Specifications](#hardware-specifications)
     - [FPGA Development Board](#fpga-development-board) 
     - [On-Board Components Used](#on-board-components-used)
-    
+    - [Project Overview](#project-overview)
 
 ## Hardware Specifications
 
