@@ -1,0 +1,5 @@
+{
+    "name": "fpga-battleship-game",
+    "includedFiles": "all",
+    "top": "top"
+}
