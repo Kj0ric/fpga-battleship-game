@@ -5,7 +5,7 @@
 <div align="center">
 
 [![Language](https://img.shields.io/badge/Icarus_Verilog-red?style=for-the-badge)](https://github.com/steveicarus/iverilog)
-![Status](https://img.shields.io/badge/status-completed-green?style=for-the-badge)
+[![Status](https://img.shields.io/badge/status-completed-green?style=for-the-badge)](https://github.com/Kj0ric/fpga-battleship-game)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](https://github.com/Kj0ric/lcd-semantic-analyzer/blob/main/LICENSE)
 
 </div>
