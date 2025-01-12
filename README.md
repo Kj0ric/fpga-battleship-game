@@ -115,6 +115,7 @@ fpga-battleship/
    - INPUT_A/B: Ship placement phase
 
 2. **Game Play States**
+   - SHOW_SCORE
    - SHOOT_A/B: Attack phase
    - SINK_A/B: Hit registration
    - ERROR_A/B: Invalid move handling
@@ -132,7 +133,7 @@ fpga-battleship/
 
 2. **Project Build**
    - Open project in Gowin IDE
-   - Set pin constraints according to `pins.cst`
+   - Set pin constraints according to `tangnano9k.cst`
    - Synthesize and generate bitstream
    - Program FPGA using built-in USB programmer
 
@@ -144,13 +145,14 @@ fpga-battleship/
 ## Gameplay Instructions
 
 1. **Ship Placement Phase**
-   - Use SW[3:0] to select coordinates
+   - Use sw[3:0] to select coordinates
+   - Press player buttons to place
    - Each player places 4 ships
-   - Invalid placements show "Erro"
+   - Error when attempting to place to an existing coordinate
 
 2. **Battle Phase**
    - Players alternate turns
-   - Select target coordinates
+   - Use sw[3:0] to select target coordinates
    - Press player button to attack
    - LED feedback for hits/misses
 
@@ -176,22 +178,15 @@ fpga-battleship/
 - Display update: ~1ms
 - State transitions: 20ms
 
-## Development and Testing
-
-This project was developed as part of CS 303 Logic & Digital System Design course. Testing included:
-- Input validation testing
-- State transition verification
-- Display timing analysis
-- Game rule compliance checks
-
 ## Future Improvements
-
 - Expandable grid size
 - Sound effects support
 - Score persistence
 - Multiple game modes
 - Enhanced visual feedback
 
-## License
+## Acknowledgements
+This project was developed as part of our Logic & Digital System Design course. 
 
+## License
 [Add your license information here]
