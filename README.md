@@ -122,55 +122,7 @@ This project implements an electronic version of Battleship where:
 
 ---
 ## Setup and Installation
-For detailed instructions installing the project, please see [INSTALLATION.md](INSTALLATION.md).
-
-### Project Setup
-1. **Create Project Directory**
-
-   - Open VS Code
-   - Go to File > Open Folder
-   - Create a new folder for your project
-   - Open the created folder
-
-2. **Configure Project**
-
-   - Click "Auto-Detect Project" button in bottom right
-   - Click "Create new Project File"
-   - Name your project
-   - Modify the generated .lushay.json file to add:
-     ```json
-     "top": "battleship"
-     ```
-3. **Add Source Files**
-
-   - Copy all source files into project directory:
-     - top.v
-     - battleship.v
-     - clk_divider.v
-     - debouncer.v
-     - ssd.v
-   - Add the constraint file (tangnano9k.cst)
-
-### Building and Programming
-
-1. **Verify Setup**
-   - Ensure TANG NANO 9K is connected via USB
-   - Check that all source files are present
-   - Verify constraint file is in place
-
-2. **Program FPGA**
-   - Click "FPGA Toolchain" button
-   - Select "Build and Program"
-   - Wait for compilation and programming to complete
-   - Verify successful programming via terminal output
-
-### Troubleshooting
-
-- If driver installation fails, try restarting your computer
-- Ensure no file paths contain spaces or non-English characters
-- Verify that the top module name in .lushay.json matches your main module
-- Check USB connection if programming fails
-- Ensure all required files are in the correct directory
+For detailed instructions on setting up and installing the project, please see [SETUP.md](SETUP.md).
 
 ## Future Improvements
 - Expandable grid size
