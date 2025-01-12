@@ -12,7 +12,12 @@
 
 A digital implementation of the classic Battleship game on FPGA, featuring a 4x4 grid system with LED display and seven-segment display (SSD) interface. This project is implemented on the Sipeed Tang Nano 9K FPGA development board, supporting two players with a best-of-three rounds system.
 
-[![demo](/demo-thumbnail.png)](https://youtu.be/PuR5qgpQ3kM)
+<div align="center">
+  <a href="https://youtu.be/PuR5qgpQ3kM">
+    <img src="/demo-thumbnail.png" alt="demo" width="500">
+  </a>
+</div>
+
 
 ## Table of Contents
 - [Hardware Specifications](#hardware-specifications)
@@ -20,8 +25,6 @@ A digital implementation of the classic Battleship game on FPGA, featuring a 4x4
     - [On-Board Components Used](#on-board-components-used)
 - [Project Overview](#project-overview)
 - [Input/Output Configuration](#inputoutput-configuration)
-   - [Input Controls](#input-controls)
-   - [Display System](#display-system)
 - [Gameplay Instructions](#gameplay-instructions)
 - [Project Structure](#project-structure)
 - [Module Descriptions](#module-descriptions)
@@ -66,25 +69,15 @@ This project implements an electronic version of Battleship where:
 
 ## Input/Output Configuration
 
-### Input Controls
-| Control | Function |
-|---------|----------|
-| BTN3    | Player A input button |
-| BTN2    | Reset button |
-| BTN1    | Start button |
-| BTN0    | Player B input button |
-| SW[3:2] | X coordinate input |
-| SW[1:0] | Y coordinate input |
+| Control | Function                | Display  | Function                          |
+|---------|-------------------------|----------|-----------------------------------|
+| BTN3    | Player A input button   | SSD3     | Player indicator/Winner display  |
+| BTN2    | Reset button            | SSD2-0   | Coordinates and score display     |
+| BTN1    | Start button            | LED[7]   | Player A turn indicator           |
+| BTN0    | Player B input button   | LED[5:4] | Player A score/input counter      |
+| SW[3:2] | X coordinate input      | LED[3:2] | Player B score/input counter      |
+| SW[1:0] | Y coordinate input      | LED[0]   | Player B turn indicator           |
 
-### Display System
-| Display | Function |
-|---------|----------|
-| SSD3    | Player indicator/Winner display |
-| SSD2-0  | Coordinates and score display |
-| LED[7]  | Player A turn indicator |
-| LED[5:4]| Player A score/input counter |
-| LED[3:2]| Player B score/input counter |
-| LED[0]  | Player B turn indicator |
 
 ## Gameplay Instructions
 1. **Ship Placement Phase**
