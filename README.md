@@ -12,7 +12,7 @@
 
 A digital implementation of the classic Battleship game on FPGA, featuring a 4x4 grid system with LED display and seven-segment display (SSD) interface. This project is implemented on the Sipeed Tang Nano 9K FPGA development board, supporting two players with a best-of-three rounds system.
 
-[demo](https://youtu.be/PuR5qgpQ3kM)
+[![demo](/demo-thumbnail.png)](https://youtu.be/PuR5qgpQ3kM)
 
 ## Table of Contents
 - [Hardware Specifications](#hardware-specifications)
