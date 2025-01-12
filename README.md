@@ -13,9 +13,10 @@
 A digital implementation of the classic Battleship game on FPGA, featuring a 4x4 grid system with LED display and seven-segment display (SSD) interface. This project is implemented on the Sipeed Tang Nano 9K FPGA development board, supporting two players with a best-of-three rounds system.
 
 <div align="center">
-  <a href="https://youtu.be/PuR5qgpQ3kM">
-    <img src="/demo-thumbnail.png" alt="demo" width="500">
-  </a>
+      <a href="https://youtu.be/PuR5qgpQ3kM">
+        <img src="/demo-thumbnail.png" alt="demo" width="500">
+      </a>
+    <p><em>Click for the demo video</em></p>
 </div>
 
 
@@ -26,12 +27,10 @@ A digital implementation of the classic Battleship game on FPGA, featuring a 4x4
 - [Project Overview](#project-overview)
 - [Input/Output Configuration](#inputoutput-configuration)
 - [Gameplay Instructions](#gameplay-instructions)
-- [Project Structure](#project-structure)
 - [Module Descriptions](#module-descriptions)
    - [Top Level Module (top.v)](#top-level-module-topv)
    - [Core Game Logic (battleship.v)](#core-game-logic-battleshipv)
    - [Support Modules](#support-modules)
-- [State Machine Description](#state-machine-description)
 - [Setup Guide](#setup-guide)
 - [Technical Implementation Details](#technical-implementation-details)
    - [Clock Management](#clock-management)
@@ -40,27 +39,29 @@ A digital implementation of the classic Battleship game on FPGA, featuring a 4x4
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
-
 ## Hardware Specifications
-
 ### FPGA Development Board
-- **Model**: Sipeed Tang Nano 9K
-- **FPGA Chip**: Gowin GW1NR-9
-- **Logic Elements**: 8640
-- **Clock Speed**: 27MHz
-- **Flash Memory**: 32Mb
-- **SRAM**: 64Kb
-- **Package**: QFN88
+| Specification            | Details                 |
+|--------------------------|-------------------------|
+| **Model**                | Sipeed Tang Nano 9K     |
+| **FPGA Chip**            | Gowin GW1NR-9           |
+| **Logic Elements**       | 8640                    |
+| **Clock Speed**          | 27MHz                   |
+| **Flash Memory**         | 32Mb                    |
+| **SRAM**                 | 64Kb                    |
+| **Package**              | QFN88                   |
 
 ### On-Board Components Used
-- **Push Buttons**: 4x (BTN0-BTN3)
-- **DIP Switches**: 4x (SW0-SW3)
-- **LEDs**: 8x user LEDs
-- **Seven-Segment Display**: 4x common anode display
-- **System Clock**: 27MHz crystal oscillator
+
+| Component                | Details                    |
+|--------------------------|----------------------------|
+| **Push Buttons**          | 4x (BTN0-BTN3)             |
+| **DIP Switches**          | 4x (SW0-SW3)               |
+| **LEDs**                  | 8x user LEDs               |
+| **Seven-Segment Display** | 4x common anode display    |
+| **System Clock**          | 27MHz crystal oscillator   |
 
 ## Project Overview
-
 This project implements an electronic version of Battleship where:
 - Each player has a 4x4 grid for ship placement
 - Players take turns placing 4 ships and attempting to sink opponent's ships
@@ -97,20 +98,6 @@ This project implements an electronic version of Battleship where:
    - First to sink 4 ships wins round
    - Best of three rounds wins game
 
-## Project Structure
-```
-fpga-battleship/
-├── src/
-│   ├── top.v             # Top-level module
-│   ├── battleship.v      # Core game logic
-│   ├── clk_divider.v     # Clock division module
-│   ├── debouncer.v       # Button debouncer
-│   └── ssd.v             # Seven-segment display controller
-├── constraints/
-│   └── pins.cst          # Pin constraints file
-└── README.md
-```
-
 ## Module Descriptions
 ### Top Level Module (`top.v`)
 - System integration and clock management
@@ -141,24 +128,9 @@ fpga-battleship/
   - Segment encoding
   - Display refresh management
 
-## State Machine Description
-1. **Initial States**
-   - IDLE: Initial reset state
-   - DISPLAY_A/B: Player turn indication
-   - INPUT_A/B: Ship placement phase
-
-2. **Game Play States**
-   - SHOW_SCORE
-   - SHOOT_A/B: Attack phase
-   - SINK_A/B: Hit registration
-   - ERROR_A/B: Invalid move handling
-
-3. **Victory States**
-   - WIN_A/B: Round victory
-   - OVRWIN_A/B: Game victory
-
-
+---
 ## Setup Guide
+
 ### Prerequisites
 - Visual Studio Code
 - USB port
@@ -170,10 +142,6 @@ fpga-battleship/
    - Search for "Lushay Code" and install 
 2. **Install OSS CAD Suite**
    - Download OSS CAD Suite 2023-02-10 for your platform: https://github.com/YosysHQ/oss-cad-suite-build/releases/tag/2023-02-10
-     - Windows: windows-x64
-     - Intel Mac: darwin-x64
-     - M1/M2/M3 Mac: darwin-arm64
-     - Linux: linux-x64
    - Extract to a folder named "oss-cad-suite"
    - For Windows: Run the extracted .exe as administrator
    - For macOS:
@@ -195,14 +163,12 @@ fpga-battleship/
 
 ### Project Setup
 1. **Create Project Directory**
-
    - Open VS Code
    - Go to File > Open Folder
    - Create a new folder for your project
    - Open the created folder
 
 2. **Configure Project**
-
    - Click "Auto-Detect Project" button in bottom right
    - Click "Create new Project File"
    - Name your project
@@ -211,7 +177,6 @@ fpga-battleship/
      "top": "battleship"
      ```
 3. **Add Source Files**
-
    - Copy all source files into project directory:
      - top.v
      - battleship.v
@@ -221,7 +186,6 @@ fpga-battleship/
    - Add the constraint file (tangnano9k.cst)
 
 ### Building and Programming
-
 1. **Verify Setup**
    - Ensure TANG NANO 9K is connected via USB
    - Check that all source files are present
@@ -234,7 +198,6 @@ fpga-battleship/
    - Verify successful programming via terminal output
 
 ### Troubleshooting
-
 - If driver installation fails, try restarting your computer
 - Ensure no file paths contain spaces or non-English characters
 - Verify that the top module name in .lushay.json matches your main module
@@ -242,7 +205,6 @@ fpga-battleship/
 - Ensure all required files are in the correct directory
 
 ## Technical Implementation Details
-
 ### Clock Management
 - Base System Clock: 27 MHz (from hardware specifications)
 - Clock Division:
@@ -272,11 +234,9 @@ fpga-battleship/
   - Minimum response time: 20ms (one game clock cycle)
   - Input processing: Complete within one game clock cycle
 
-
 ## Future Improvements
 - Expandable grid size
 - Sound effects support
-- Score persistence
 - Multiple game modes
 - Enhanced visual feedback
 
