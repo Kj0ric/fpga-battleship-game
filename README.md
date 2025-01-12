@@ -22,15 +22,10 @@ A digital implementation of the classic Battleship game on FPGA, featuring a 4x4
 
 ## Table of Contents
 - [Hardware Specifications](#hardware-specifications)
-    - [FPGA Development Board](#fpga-development-board) 
-    - [On-Board Components Used](#on-board-components-used)
 - [Project Overview](#project-overview)
 - [Input/Output Configuration](#inputoutput-configuration)
 - [Gameplay Instructions](#gameplay-instructions)
 - [Module Descriptions](#module-descriptions)
-   - [Top Level Module (top.v)](#top-level-module-topv)
-   - [Core Game Logic (battleship.v)](#core-game-logic-battleshipv)
-   - [Support Modules](#support-modules)
 - [Setup Guide](#setup-guide)
 - [Future Improvements](#future-improvements)
 - [License](#license)
