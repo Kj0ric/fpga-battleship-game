@@ -2,6 +2,14 @@
     FPGA Battleship Game
 </h1>
 
+<div align="center">
+
+[![Language](https://img.shields.io/badge/Icarus_Verilog-red?style=for-the-badge)](https://github.com/steveicarus/iverilog)
+![Status](https://img.shields.io/badge/status-completed-green?style=for-the-badge)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](https://github.com/Kj0ric/lcd-semantic-analyzer/blob/main/LICENSE)
+
+</div>
+
 A digital implementation of the classic Battleship game on FPGA, featuring a 4x4 grid system with LED display and seven-segment display (SSD) interface. This project is implemented on the Sipeed Tang Nano 9K FPGA development board, supporting two players with a best-of-three rounds system.
 
 ![demo](https://youtu.be/PuR5qgpQ3kM)
@@ -11,6 +19,24 @@ A digital implementation of the classic Battleship game on FPGA, featuring a 4x4
     - [FPGA Development Board](#fpga-development-board) 
     - [On-Board Components Used](#on-board-components-used)
 - [Project Overview](#project-overview)
+- [Input/Output Configuration](#inputoutput-configuration)
+   - [Input Controls](#input-controls)
+   - [Display System](#display-system)
+- [Gameplay Instructions](#gameplay-instructions)
+- [Project Structure](#project-structure)
+- [Module Descriptions](#module-descriptions)
+   - [Top Level Module (top.v)](#top-level-module-topv)
+   - [Core Game Logic (battleship.v)](#core-game-logic-battleshipv)
+   - [Support Modules](#support-modules)
+- [State Machine Description](#state-machine-description)
+- [Setup Guide](#setup-guide)
+- [Technical Implementation Details](#technical-implementation-details)
+   - [Clock Management](#clock-management)
+   - [Timing Specifications](#timing-specifications)
+- [Future Improvements](#future-improvements)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+
 
 ## Hardware Specifications
 
@@ -60,8 +86,25 @@ This project implements an electronic version of Battleship where:
 | LED[3:2]| Player B score/input counter |
 | LED[0]  | Player B turn indicator |
 
-## Project Structure
+## Gameplay Instructions
+1. **Ship Placement Phase**
+   - Use sw[3:0] to select coordinates
+   - Press player buttons to place
+   - Each player places 4 ships
+   - Error when attempting to place to an existing coordinate
 
+2. **Battle Phase**
+   - Players alternate turns
+   - Use sw[3:0] to select target coordinates
+   - Press player button to attack
+   - LED feedback for hits/misses
+
+3. **Scoring**
+   - One point per ship sunk
+   - First to sink 4 ships wins round
+   - Best of three rounds wins game
+
+## Project Structure
 ```
 fpga-battleship/
 ├── src/
@@ -76,7 +119,6 @@ fpga-battleship/
 ```
 
 ## Module Descriptions
-
 ### Top Level Module (`top.v`)
 - System integration and clock management
 - Button debouncing implementation
@@ -107,8 +149,6 @@ fpga-battleship/
   - Display refresh management
 
 ## State Machine Description
-
-### Game States
 1. **Initial States**
    - IDLE: Initial reset state
    - DISPLAY_A/B: Player turn indication
@@ -124,59 +164,121 @@ fpga-battleship/
    - WIN_A/B: Round victory
    - OVRWIN_A/B: Game victory
 
-## Setup Instructions
 
-1. **Hardware Setup**
-   - Connect Tang Nano 9K to power and USB
-   - Ensure all switches and buttons are accessible
-   - Verify LED and SSD connections
+## Setup Guide
+### Prerequisites
+- Visual Studio Code
+- USB port
+- Administrative privileges on your computer
+### Tool Installation
+1. **Install VS Code Extensions**
+   - Open VS Code
+   - Go to Extensions tab
+   - Search for "Lushay Code" and install 
+2. **Install OSS CAD Suite**
+   - Download OSS CAD Suite 2023-02-10 for your platform: https://github.com/YosysHQ/oss-cad-suite-build/releases/tag/2023-02-10
+     - Windows: windows-x64
+     - Intel Mac: darwin-x64
+     - M1/M2/M3 Mac: darwin-arm64
+     - Linux: linux-x64
+   - Extract to a folder named "oss-cad-suite"
+   - For Windows: Run the extracted .exe as administrator
+   - For macOS:
+     - Open terminal in oss-cad-suite folder
+     - Run: 
+      ```bash
+      chmod +x activate
+      ./activate
+      ```
+3. **Driver Setup (Windows Only)**
+   - Download Zadig from https://zadig.akeo.ie
+   - Connect TANG NANO 9K to USB
+   - In Zadig:
+     - Select Options > List All Devices
+     - Select "JTAG Debugger (Interface 0)"
+     - Select "WinUSB" as driver
+     - Click "Replace Driver"
+     - Restart computer if installation fails
 
-2. **Project Build**
-   - Open project in Gowin IDE
-   - Set pin constraints according to `tangnano9k.cst`
-   - Synthesize and generate bitstream
-   - Program FPGA using built-in USB programmer
+### Project Setup
+1. **Create Project Directory**
 
-3. **Game Initialization**
-   - Press BTN2 for system reset
-   - Press BTN1 to start game
-   - Follow SSD prompts for gameplay
+   - Open VS Code
+   - Go to File > Open Folder
+   - Create a new folder for your project
+   - Open the created folder
 
-## Gameplay Instructions
+2. **Configure Project**
 
-1. **Ship Placement Phase**
-   - Use sw[3:0] to select coordinates
-   - Press player buttons to place
-   - Each player places 4 ships
-   - Error when attempting to place to an existing coordinate
+   - Click "Auto-Detect Project" button in bottom right
+   - Click "Create new Project File"
+   - Name your project
+   - Modify the generated .lushay.json file to add:
+     ```json
+     "top": "battleship"
+     ```
+3. **Add Source Files**
 
-2. **Battle Phase**
-   - Players alternate turns
-   - Use sw[3:0] to select target coordinates
-   - Press player button to attack
-   - LED feedback for hits/misses
+   - Copy all source files into project directory:
+     - top.v
+     - battleship.v
+     - clk_divider.v
+     - debouncer.v
+     - ssd.v
+   - Add the constraint file (tangnano9k.cst)
 
-3. **Scoring**
-   - One point per ship sunk
-   - First to sink 4 ships wins round
-   - Best of three rounds wins game
+### Building and Programming
 
-## Technical Notes
+1. **Verify Setup**
+   - Ensure TANG NANO 9K is connected via USB
+   - Check that all source files are present
+   - Verify constraint file is in place
+
+2. **Program FPGA**
+   - Click "FPGA Toolchain" button
+   - Select "Build and Program"
+   - Wait for compilation and programming to complete
+   - Verify successful programming via terminal output
+
+### Troubleshooting
+
+- If driver installation fails, try restarting your computer
+- Ensure no file paths contain spaces or non-English characters
+- Verify that the top module name in .lushay.json matches your main module
+- Check USB connection if programming fails
+- Ensure all required files are in the correct directory
+
+## Technical Implementation Details
 
 ### Clock Management
-- System clock: 27MHz
-- Game logic clock: 50Hz
-- Display refresh: ~1kHz
+- Base System Clock: 27 MHz (from hardware specifications)
+- Clock Division:
+  - Game Logic Clock: Generated by clk_divider.v
+    - Division ratio: 27MHz ÷ 50Hz = 540,000
+    - Used for game state updates and input processing
+  - Display Refresh Clock: Generated by clk_divider.v
+    - Division ratio: 27MHz ÷ 1kHz = 27,000
+    - Controls seven-segment display multiplexing
 
-### Memory Usage
-- Ship positions: 16-bit registers per player
-- Score tracking: 4-bit counters
-- State storage: 4-bit register
+### Timing Specifications
+- Button Debouncing:
+  - Implemented in debouncer.v
+  - Sampling period: Calculate based on chosen counter width
+  - Example: Using 10-bit counter at 27MHz:
+    - 2^10 cycles = 1024 cycles
+    - 1024 ÷ 27MHz ≈ 37.9 μs per sample
+  
+- Display Multiplexing:
+  - Four digits to cycle through
+  - Minimum refresh rate needed: 60Hz per digit
+  - Total refresh rate: 240Hz minimum
+  - Actual implementation: 1kHz (comfortable margin for smooth display)
+  
+- State Machine Timing:
+  - State transitions synchronized to game logic clock (50Hz)
+  - Minimum response time: 20ms (one game clock cycle)
+  - Input processing: Complete within one game clock cycle
 
-### Timing Considerations
-- Debounce delay: ~20ms
-- Display update: ~1ms
-- State transitions: 20ms
 
 ## Future Improvements
 - Expandable grid size
@@ -185,8 +287,8 @@ fpga-battleship/
 - Multiple game modes
 - Enhanced visual feedback
 
+## License
+This project is licensed under the MIT license - see the LICENSE file for details.
+
 ## Acknowledgements
 This project was developed as part of our Logic & Digital System Design course. 
-
-## License
-[Add your license information here]
