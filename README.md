@@ -26,7 +26,7 @@ A digital implementation of the classic Battleship game on FPGA, featuring a 4x4
 - [Input/Output Configuration](#inputoutput-configuration)
 - [Gameplay Instructions](#gameplay-instructions)
 - [Module Descriptions](#module-descriptions)
-- [Setup Guide](#setup-guide)
+- [Setup and Installation](#setup-and-installation)
 - [Future Improvements](#future-improvements)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
@@ -121,46 +121,19 @@ This project implements an electronic version of Battleship where:
   - Display refresh management
 
 ---
-## Setup Guide
-
-### Prerequisites
-- Visual Studio Code
-- USB port
-- Administrative privileges on your computer
-### Tool Installation
-1. **Install VS Code Extensions**
-   - Open VS Code
-   - Go to Extensions tab
-   - Search for "Lushay Code" and install 
-2. **Install OSS CAD Suite**
-   - Download OSS CAD Suite 2023-02-10 for your platform: https://github.com/YosysHQ/oss-cad-suite-build/releases/tag/2023-02-10
-   - Extract to a folder named "oss-cad-suite"
-   - For Windows: Run the extracted .exe as administrator
-   - For macOS:
-     - Open terminal in oss-cad-suite folder
-     - Run: 
-      ```bash
-      chmod +x activate
-      ./activate
-      ```
-3. **Driver Setup (Windows Only)**
-   - Download Zadig from https://zadig.akeo.ie
-   - Connect TANG NANO 9K to USB
-   - In Zadig:
-     - Select Options > List All Devices
-     - Select "JTAG Debugger (Interface 0)"
-     - Select "WinUSB" as driver
-     - Click "Replace Driver"
-     - Restart computer if installation fails
+## Setup and Installation
+For detailed instructions installing the project, please see [INSTALLATION.md](INSTALLATION.md).
 
 ### Project Setup
 1. **Create Project Directory**
+
    - Open VS Code
    - Go to File > Open Folder
    - Create a new folder for your project
    - Open the created folder
 
 2. **Configure Project**
+
    - Click "Auto-Detect Project" button in bottom right
    - Click "Create new Project File"
    - Name your project
@@ -169,6 +142,7 @@ This project implements an electronic version of Battleship where:
      "top": "battleship"
      ```
 3. **Add Source Files**
+
    - Copy all source files into project directory:
      - top.v
      - battleship.v
@@ -178,6 +152,7 @@ This project implements an electronic version of Battleship where:
    - Add the constraint file (tangnano9k.cst)
 
 ### Building and Programming
+
 1. **Verify Setup**
    - Ensure TANG NANO 9K is connected via USB
    - Check that all source files are present
@@ -190,6 +165,7 @@ This project implements an electronic version of Battleship where:
    - Verify successful programming via terminal output
 
 ### Troubleshooting
+
 - If driver installation fails, try restarting your computer
 - Ensure no file paths contain spaces or non-English characters
 - Verify that the top module name in .lushay.json matches your main module
