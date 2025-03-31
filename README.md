@@ -134,4 +134,4 @@ For detailed instructions on setting up and installing the project, please see [
 This project is licensed under the MIT license - see the LICENSE file for details.
 
 ## Acknowledgements
-This project was developed as part of our Logic & Digital System Design course. 
+This project was developed as part of the Logic & Digital System Design course and is the result of a collaborative effort by [Harun Yılmaz](https://github.com/Kj0ric) and [Azra At](https://github.com/ssinix).
